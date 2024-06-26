@@ -138,12 +138,12 @@ nowe = false
 game:GetService("StarterGui"):SetCore("SendNotification", { 
 	Title = "FLY GUI V1";
 	Text = "BY BLAZY";
-	Icon = "https://media.discordapp.net/attachments/1236291746170929233/1255585847781101638/image.png?ex=667daaf1&is=667c5971&hm=7633f260ef420cd5016ff037f5f639b98b852073822618a13561de4869376057&=&format=webp&quality=lossless"})
+	Icon = "https://media.discordapp.net/attachments/1236291746170929233/1255586911481761883/image.png?ex=667dabef&is=667c5a6f&hm=4b750bf644eb24412e68853698b077ebcc7e191f14dbdb289919f7dbb0e438ea&=&format=webp&quality=lossless"})
 Duration = 3;
 game:GetService("StarterGui"):SetCore("SendNotification", { 
 	Title2 = "Discord";
 	Text2 = "discord.gg/deathteam";
-	Icon = "https://media.discordapp.net/attachments/1236291746170929233/1255585847781101638/image.png?ex=667daaf1&is=667c5971&hm=7633f260ef420cd5016ff037f5f639b98b852073822618a13561de4869376057&=&format=webp&quality=lossless"})
+	Icon = "https://media.discordapp.net/attachments/1236291746170929233/1255586994264866856/image.png?ex=667dac03&is=667c5a83&hm=e85d9fb19ff3b137a73430b014d40413d2b4482a701580a1eb114c1d4062f7ad&=&format=webp&quality=lossless"})
 Duration = 50;
 
 
