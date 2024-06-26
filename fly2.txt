@@ -116,15 +116,6 @@ mini.Text = "-"
 mini.TextSize = 40
 mini.Position = UDim2.new(0, 44, -1, 27)
 
-mini3.Name = "owner"
-mini3.Parent = main.Frame
-mini3.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
-mini3.Font = "SourceSans"
-mini3.Size = UDim2.new(0, 45, 0, 28)
-mini3.Text = "-"
-mini3.TextSize = 40
-mini3.Position = UDim2.new(0, 0, -1, 20)
-
 mini2.Name = "minimize2"
 mini2.Parent = main.Frame
 mini2.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
