@@ -1,0 +1,147 @@
+-- Global değişkenler
+_G.WS = "100";
+
+-- İletişim için Discord linki
+local discordLink = "https://discord.gg/deathteam";
+
+-- Oyuncunun karakterini al
+local player = game:GetService("Players").LocalPlayer;
+local character = player.Character or player.CharacterAdded:Wait();
+local humanoid = character:WaitForChild("Humanoid");
+
+-- WalkSpeed değişikliklerini dinle ve güncelle
+humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+    humanoid.WalkSpeed = tonumber(_G.WS);
+end)
+humanoid.WalkSpeed = tonumber(_G.WS);
+
+-- UI bileşenlerini oluştur
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 200, 0, 100)
+Frame.Position = UDim2.new(1, -220, 1, -120)  -- Sağ alt köşeye yerleştirildi
+Frame.AnchorPoint = Vector2.new(1, 1)  -- Sağ alt köşeye göre hizalandı
+Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Frame.BorderSizePixel = 2
+Frame.Parent = ScreenGui
+
+local DiscordButton = Instance.new("TextButton")
+DiscordButton.Text = "discord.gg/deathteam"
+DiscordButton.Size = UDim2.new(1, 0, 0.5, 0)
+DiscordButton.Position = UDim2.new(0, 0, 0, 0)
+DiscordButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+DiscordButton.BorderSizePixel = 0
+DiscordButton.Font = Enum.Font.SourceSans
+DiscordButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+DiscordButton.TextSize = 14
+DiscordButton.Parent = Frame
+DiscordButton.MouseButton1Click:Connect(function()
+    game:GetService("GuiService"):OpenBrowserWindow(discordLink)
+end)
+
+local Label = Instance.new("TextLabel")
+Label.Text = "Hız:"
+Label.Size = UDim2.new(1, 0, 0.5, 0)
+Label.Position = UDim2.new(0, 0, 0.5, 0)
+Label.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Label.BorderSizePixel = 0
+Label.Font = Enum.Font.SourceSans
+Label.TextColor3 = Color3.fromRGB(150, 150, 150)
+Label.TextSize = 14
+Label.Parent = Frame
+
+local Input = Instance.new("TextBox")
+Input.PlaceholderText = "Hızı girin..."
+Input.Size = UDim2.new(1, 0, 0.5, 0)
+Input.Position = UDim2.new(0, 0, 0.5, 0)
+Input.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Input.BorderSizePixel = 0
+Input.Font = Enum.Font.SourceSans
+Input.TextColor3 = Color3.fromRGB(255, 255, 255)
+Input.TextSize = 14
+Input.Parent = Frame
+Input.FocusLost:Connect(function(enterPressed)
+    if enterPressed and Input.Text ~= "" then
+        _G.WS = Input.Text
+        humanoid.WalkSpeed = tonumber(_G.WS)
+    end
+end)
+
+-- GUI'nin hareket edebilmesi için gerekli değişkenler
+local dragging = false
+local dragInput, dragStart, startPos
+
+-- GUI'nin konumunu güncellemek için fonksiyon
+local function updateDrag(input)
+    local delta = input.Position - dragStart
+    ScreenGui.Enabled = true
+    ScreenGui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+-- GUI'yi mouse ile hareket ettirme işlemleri
+Frame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = ScreenGui.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+Frame.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
+    end
+end)
+
+-- Küçültme ve kapatma butonları
+local MinimizeButton = Instance.new("TextButton")
+MinimizeButton.Text = "_"
+MinimizeButton.Size = UDim2.new(0, 20, 0, 20)
+MinimizeButton.Position = UDim2.new(1, -40, 0, 5)
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+MinimizeButton.BorderSizePixel = 0
+MinimizeButton.Font = Enum.Font.SourceSans
+MinimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+MinimizeButton.TextSize = 14
+MinimizeButton.Parent = Frame
+MinimizeButton.MouseButton1Click:Connect(function()
+    Frame.Visible = false
+    MinimizeButton.Visible = false
+    local RestoreButton = Instance.new("TextButton")
+    RestoreButton.Text = "Restore"
+    RestoreButton.Size = UDim2.new(0, 50, 0, 20)
+    RestoreButton.Position = UDim2.new(0.5, -25, 1, -25)
+    RestoreButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    RestoreButton.BorderSizePixel = 0
+    RestoreButton.Font = Enum.Font.SourceSans
+    RestoreButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    RestoreButton.TextSize = 14
+    RestoreButton.Parent = Frame
+    RestoreButton.MouseButton1Click:Connect(function()
+        Frame.Visible = true
+        MinimizeButton.Visible = true
+        RestoreButton:Destroy()
+    end)
+end)
+
+local CloseButton = Instance.new("TextButton")
+CloseButton.Text = "X"
+CloseButton.Size = UDim2.new(0, 20, 0, 20)
+CloseButton.Position = UDim2.new(1, -20, 0, 5)
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+CloseButton.BorderSizePixel = 0
+CloseButton.Font = Enum.Font.SourceSans
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.TextSize = 14
+CloseButton.Parent = Frame
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
