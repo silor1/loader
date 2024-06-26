@@ -98,18 +98,6 @@ mine.TextScaled = true
 mine.TextSize = 14.000
 mine.TextWrapped = true
 
-mine.Name = "own"
-mine.Parent = Frame
-mine.BackgroundColor3 = Color3.fromRGB(123, 255, 247)
-mine.Position = UDim2.new(0, 0, -1, 20)
-mine.Size = UDim2.new(0, 45, 0, 29)
-mine.Font = Enum.Font.SourceSans
-mine.Text = "-"
-mine.TextColor3 = Color3.fromRGB(0, 0, 0)
-mine.TextScaled = true
-mine.TextSize = 14.000
-mine.TextWrapped = true
-
 closebutton.Name = "Close"
 closebutton.Parent = main.Frame
 closebutton.BackgroundColor3 = Color3.fromRGB(225, 25, 0)
@@ -128,14 +116,14 @@ mini.Text = "-"
 mini.TextSize = 40
 mini.Position = UDim2.new(0, 44, -1, 27)
 
-mini.Name = "owner"
-mini.Parent = main.Frame
-mini.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
-mini.Font = "SourceSans"
-mini.Size = UDim2.new(0, 45, 0, 28)
-mini.Text = "-"
-mini.TextSize = 40
-mini.Position = UDim2.new(0, 0, -1, 20)
+mini3.Name = "owner"
+mini3.Parent = main.Frame
+mini3.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
+mini3.Font = "SourceSans"
+mini3.Size = UDim2.new(0, 45, 0, 28)
+mini3.Text = "-"
+mini3.TextSize = 40
+mini3.Position = UDim2.new(0, 0, -1, 20)
 
 mini2.Name = "minimize2"
 mini2.Parent = main.Frame
