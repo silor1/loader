@@ -136,10 +136,16 @@ local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
 nowe = false
 
 game:GetService("StarterGui"):SetCore("SendNotification", { 
-	Title = "FLY GUI V3";
+	Title = "FLY GUI V1";
 	Text = "BY BLAZY";
 	Icon = "https://media.discordapp.net/attachments/1236291746170929233/1255585847781101638/image.png?ex=667daaf1&is=667c5971&hm=7633f260ef420cd5016ff037f5f639b98b852073822618a13561de4869376057&=&format=webp&quality=lossless"})
+Duration = 3;
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+	Title2 = "Discord";
+	Text2 = "discord.gg/deathteam";
+	Icon = "https://media.discordapp.net/attachments/1236291746170929233/1255585847781101638/image.png?ex=667daaf1&is=667c5971&hm=7633f260ef420cd5016ff037f5f639b98b852073822618a13561de4869376057&=&format=webp&quality=lossless"})
 Duration = 50;
+
 
 Frame.Active = true -- main = gui
 Frame.Draggable = true
